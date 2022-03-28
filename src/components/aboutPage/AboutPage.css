@@ -1,0 +1,65 @@
+.aboutWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 1140px;
+}
+
+.headerAboutContainer {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+}
+
+.backContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.backArrow {
+  border: none;
+  outline: none;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.back {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-left: 19.5px;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-left: 420px;
+}
+
+.aboutText1 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-top: 70px;
+}
+
+.aboutText2 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-top: 20px;
+}

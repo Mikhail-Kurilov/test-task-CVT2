@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
 import Authorization from "./components/authorization/Authorization";
@@ -6,14 +7,16 @@ import Registration from "./components/registration/Registration";
 import img from "../../assets/img/randm.png";
 
 function Header() {
-  const [login, setLogin] = useState(false);
+  const [openRegistration, setOpenRegistration] = useState(false);
+  const [openAuthorization, setOpenAuthorization] = useState(false);
+  const navigate = useNavigate();
 
-  function authorizationOn() {
-    setLogin(!login);
+  function registrationToggle() {
+    setOpenRegistration(!openRegistration);
   }
 
-  function authorizationOff() {
-    setLogin(login);
+  function authorizationToggle() {
+    setOpenAuthorization(!openAuthorization);
   }
 
   function userNameAdd() {
@@ -31,58 +34,91 @@ function Header() {
     }
   }
 
+  function handleClickAbout() {
+    document
+      .querySelectorAll(".relocationButton")
+      .forEach((elem) => elem.classList.toggle("active"));
+    navigate("/about");
+  }
+
+  function handleClickMain() {
+    document
+      .querySelectorAll(".relocationButton")
+      .forEach((elem) => elem.classList.toggle("active"));
+    navigate("/");
+  }
+
+  function handleClickSelect() {
+    document
+      .querySelectorAll(".relocationButton")
+      .forEach((elem) => elem.classList.toggle("active"));
+    navigate("/select");
+  }
+
   function authorization() {
-    if (!login) {
+    if (openAuthorization) {
       return (
         <div className="userBox">
           <p className="UserName" contentEditable="true">
-            {userNameAdd} {userNameSaveStorage}
+            {userNameAdd()} {userNameSaveStorage()}
           </p>
-          <button className="enterButton" onClick={authorizationOff}>
+          <button className="exitButton" onClick={registrationToggle}>
             Выйти
           </button>
         </div>
       );
-    } else
-      return (
-        <div>
-          <button
-            className="registrationButton"
-            /*  onClick={
-              <Registration
-                loginReg={login}
-                authorizationOn={authorizationOn}
-              />
-            }  */
-          >
-            Регистрация
-          </button>
-          <button
-            className="exitButton"
-            /*    onClick={
-              <Authorization
-                loginAuth={login}
-                authorizationOn={authorizationOn}
-              />
-            } */
-          >
-            Войти
-          </button>
-        </div>
-      );
+    }
+    return (
+      <div>
+        <button className="registrationButton" onClick={registrationToggle}>
+          Регистрация
+        </button>
+        <button className="enterButton" onClick={authorizationToggle}>
+          Войти
+        </button>
+      </div>
+    );
   }
 
   return (
     <div className="header">
-      <div className="imageWrapper">
-        <img src={img}></img>
+      <div className="headerWrapper">
+        <div className="imageWrapper">
+          <img src={img} width="112px" height="112px" alt="RickAndMorty"></img>
+        </div>
+        <div className="buttonContainer">
+          <button className="relocationButton active" onClick={handleClickMain}>
+            Главная
+          </button>
+          {openAuthorization ? (
+            <button className="relocationButton" onClick={handleClickSelect}>
+              Избранное
+            </button>
+          ) : (
+            <div />
+          )}
+          <button className="relocationButton" onClick={handleClickAbout}>
+            О проекте
+          </button>
+        </div>
+        <div className="registrationContainer">{authorization()}</div>
+        <div>
+          {
+            <Authorization
+              loginReg={openAuthorization}
+              authorizationOn={authorizationToggle}
+            />
+          }
+        </div>
+        <div>
+          {
+            <Registration
+              loginReg={openRegistration}
+              authorizationOn={registrationToggle}
+            />
+          }
+        </div>
       </div>
-      <div className="buttonContainer">
-        <button className="mainButton">Главная</button>
-        {login ? <button className="chooseButton">Избранное</button> : <div />}
-        <button className="anoutButton">О проекте</button>
-      </div>
-      <div className="registrationContainer">{authorization}</div>
     </div>
   );
 }

@@ -1,0 +1,49 @@
+.registrationWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 100%;
+  background: #00000066;
+}
+
+.registrationForm {
+  position: absolute;
+  width: 370px;
+  height: 637px;
+  left: 536px;
+  top: 194px;
+  background: #ffffff;
+}
+
+.regWord {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 44px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.regInput {
+  width: 331px;
+  height: 36px;
+  background: rgba(162, 162, 162, 0.1);
+  border: 1px solid rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-top: 35px;
+}
+
+.buttonReg {
+  width: 236px;
+  height: 49px;
+  background: #000000;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 53px;
+  color: #ffffff;
+}

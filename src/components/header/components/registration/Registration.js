@@ -1,4 +1,5 @@
 import React from "react";
+import "./Registration.css";
 
 function Registration({ loginReg, authorizationOn }) {
   function login() {
@@ -42,23 +43,33 @@ function Registration({ loginReg, authorizationOn }) {
   if (loginReg) {
     return (
       <div className="registrationWrapper">
-        <div className="registrationOff" onClick={authorizationOn}></div>
-        <form>
-          <p className="regWord">Регистрация</p>
-          <span className="regContainer">
-            <input id="mail" type="email"></input>
-            <input id="login" type="text"></input>
-            <input id="name" type="text"></input>
-            <input id="surname" type="text"></input>
-            <input id="password" type="password"></input>
-            <input id="password2" type="password"></input>
-          </span>
-          <button className="buttonReg" onClick={login}>
-            Зарегистрировать
-          </button>
-        </form>
+        <img></img>
+        <img></img>
+        <img></img>
+        <div className="registrationForm">
+          <form>
+            <p className="regWord">Регистрация</p>
+            <span className="regContainer">
+              <input id="mail" className="regInput" type="email"></input>
+              <input id="login" className="regInput" type="text"></input>
+              <input id="name" className="regInput" type="text"></input>
+              <input id="surname" className="regInput" type="text"></input>
+              <input id="password" className="regInput" type="password"></input>
+              <input
+                id="password2"
+                className="regInput"
+                type="password"
+              ></input>
+            </span>
+            <button className="buttonReg" onClick={login}>
+              Зарегистрировать
+            </button>
+          </form>
+        </div>
       </div>
     );
+  } else {
+    return <div></div>;
   }
 }
 

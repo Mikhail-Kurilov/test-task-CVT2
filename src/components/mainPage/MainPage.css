@@ -1,0 +1,50 @@
+.mainWrapper {
+  margin-top: 55px;
+}
+.cardCOntainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.mainCards {
+  border: 1px solid black;
+  border-radius: 19px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 370px;
+}
+
+.mainCards:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 4px 0px rgba(86, 86, 86, 0.6);
+  transform: translate(-5px, -5px);
+}
+
+.innerContainer {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.h2 {
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 44px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 18px;
+}
+
+.innerCardText {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 21px;
+  margin-bottom: 31px;
+}

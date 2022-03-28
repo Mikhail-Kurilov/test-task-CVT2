@@ -8,7 +8,6 @@ function Authorization({ loginReg, authorizationOn }) {
     const password = document.getElementById("password").value;
     const rep = /^[0-9A-Za-z]+$/i;
     const validPassword = rep.test(password);
-
     const login = document.getElementById("login").value;
 
     if (
@@ -50,6 +49,8 @@ function Authorization({ loginReg, authorizationOn }) {
         </form>
       </div>
     );
+  } else {
+    return <div></div>;
   }
 }
 
