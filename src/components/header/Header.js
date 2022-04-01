@@ -6,32 +6,41 @@ import Authorization from "./components/authorization/Authorization";
 import Registration from "./components/registration/Registration";
 import img from "../../assets/img/randm.png";
 
+const PAGE_STATUS = {
+  NO_POPUPS: "noPopups",
+  REG_POPUP: "regPopup",
+  AUTH_POPUP: "authPopup",
+};
+
 function Header() {
-  const [openRegistration, setOpenRegistration] = useState(false);
-  const [openAuthorization, setOpenAuthorization] = useState(false);
+  const [authStatus, setAuthStatus] = useState(false);
+  const [pageStatus, setPageStatus] = useState(PAGE_STATUS.NO_POPUPS);
   const navigate = useNavigate();
 
-  function registrationToggle() {
-    setOpenRegistration(!openRegistration);
+  function registrationToggle(value, name, surname) {
+    if (value) {
+      localStorage.setItem("name", name);
+      localStorage.setItem("surname", surname);
+      setAuthStatus(true);
+      setPageStatus(PAGE_STATUS.NO_POPUPS);
+    } else {
+      setPageStatus(PAGE_STATUS.REG_POPUP);
+    }
   }
 
-  function authorizationToggle() {
-    setOpenAuthorization(!openAuthorization);
+  function authorizationToggle(value) {
+    if (value) {
+      setAuthStatus(true);
+      setPageStatus(PAGE_STATUS.NO_POPUPS);
+    } else {
+      setPageStatus(PAGE_STATUS.AUTH_POPUP);
+    }
   }
 
   function userNameAdd() {
-    return localStorage.getItem("userName")
-      ? localStorage.getItem("userName")
-      : "Иванов И.";
-  }
-
-  function userNameSaveStorage(event) {
-    const userName = event.target.innerHTML;
-    let name = userName.replaceAll("&nbsp", "");
-    name = name.trim();
-    if (name !== "") {
-      localStorage.setItem("userName", name);
-    }
+    const name = localStorage.getItem("name");
+    const surname = localStorage.getItem("surname");
+    return name && surname ? name && surname : "Иванов И.";
   }
 
   function handleClickAbout() {
@@ -56,21 +65,24 @@ function Header() {
   }
 
   function authorization() {
-    if (openAuthorization) {
+    if (authStatus) {
       return (
         <div className="userBox">
-          <p className="UserName" contentEditable="true">
-            {userNameAdd()} {userNameSaveStorage()}
+          <p className="userName" contentEditable="true">
+            {userNameAdd()}
           </p>
-          <button className="exitButton" onClick={registrationToggle}>
+          <button className="exitButton" onClick={() => setAuthStatus(false)}>
             Выйти
           </button>
         </div>
       );
     }
     return (
-      <div>
-        <button className="registrationButton" onClick={registrationToggle}>
+      <div className="RegAuthContainer">
+        <button
+          className="registrationButton"
+          onClick={() => registrationToggle()}
+        >
           Регистрация
         </button>
         <button className="enterButton" onClick={authorizationToggle}>
@@ -90,7 +102,7 @@ function Header() {
           <button className="relocationButton active" onClick={handleClickMain}>
             Главная
           </button>
-          {openAuthorization ? (
+          {authStatus ? (
             <button className="relocationButton" onClick={handleClickSelect}>
               Избранное
             </button>
@@ -102,22 +114,13 @@ function Header() {
           </button>
         </div>
         <div className="registrationContainer">{authorization()}</div>
-        <div>
-          {
-            <Authorization
-              loginReg={openAuthorization}
-              authorizationOn={authorizationToggle}
-            />
-          }
-        </div>
-        <div>
-          {
-            <Registration
-              loginReg={openRegistration}
-              authorizationOn={registrationToggle}
-            />
-          }
-        </div>
+        {pageStatus === PAGE_STATUS.AUTH_POPUP ? (
+          <Authorization authorizationOn={authorizationToggle} />
+        ) : pageStatus === PAGE_STATUS.REG_POPUP ? (
+          <Registration authorizationOn={registrationToggle} />
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

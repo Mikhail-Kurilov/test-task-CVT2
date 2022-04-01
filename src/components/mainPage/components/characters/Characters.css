@@ -1,0 +1,339 @@
+.charactersWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.headerCharactersContainer {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+}
+
+.backContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.backArrow {
+  border: none;
+  outline: none;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.back {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-left: 19.5px;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-left: 420px;
+}
+
+.navContainer {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nameSearch {
+  width: 370px;
+  height: 36px;
+  background: rgba(162, 162, 162, 0.1);
+  border: 1px solid rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 10px 0 11px 13px;
+  margin-top: 20px;
+}
+
+.raceSearch {
+  width: 270px;
+  height: 36px;
+  background: rgba(162, 162, 162, 0.1);
+  border: 1px solid rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 10px 0 11px 20px;
+  margin-top: 20px;
+}
+
+.statusSearch {
+  width: 270px;
+  height: 36px;
+  background: rgba(162, 162, 162, 0.1);
+  border: 1px solid rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 10px 0 10px 20px;
+  color: rgba(0, 0, 0, 0.6);
+  background-image: url(../../../../assets/img/blueArrow.png) no-repeat center
+    right 9px;
+  margin-top: 20px;
+}
+
+.statusSearchOption {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchTitle {
+  display: flex;
+  justify-content: flex-start;
+}
+.formTitle {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.toggleButtonContainer {
+  width: 63px;
+  height: 29.5px;
+  margin-top: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.toggleView {
+  width: 24px;
+  height: 29.5px;
+  border: none;
+  cursor: pointer;
+  background: url(../../../../assets/img/gridActive.png) no-repeat center;
+  border-bottom: 1px dashed #ff0000;
+}
+
+.toggleView.active {
+  width: 24px;
+  height: 29.5px;
+  border: none;
+  cursor: pointer;
+  background: url(../../../../assets/img/gridOff.png) no-repeat center;
+}
+
+.toggleView2 {
+  width: 24px;
+  height: 27.5px;
+  border: none;
+  cursor: pointer;
+  background: url(../../../../assets/img/stripesOff.png) no-repeat center;
+}
+
+.toggleView2.active2 {
+  width: 24px;
+  height: 27.5px;
+  border: none;
+  cursor: pointer;
+  background: url(../../../../assets/img/stripesActive.png) no-repeat center;
+  border-bottom: 1px dashed #ff0000;
+}
+
+.charContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.charItem {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+  border: 1px dashed rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+  justify-content: space-between;
+}
+
+.charItemHandlerOne {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 976px;
+}
+
+.charItemHandlerTwo {
+  margin-right: 15px;
+  width: 513px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.firstItemContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+  margin-left: 15px;
+  width: 400px;
+}
+
+.secondItemContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 43px;
+}
+
+.charName {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.innerItem {
+  display: flex;
+  flex-direction: row;
+}
+
+.itemTxt {
+  text-align: start;
+  vertical-align: bottom;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #1f4766;
+}
+
+.itemValue {
+  text-align: start;
+}
+
+.raceBox {
+  margin-top: 8px;
+}
+
+.raceItem {
+  width: 107px;
+  margin-right: 55px;
+}
+
+.placeBox {
+  margin-top: 7px;
+}
+
+.placeItem {
+  width: 150px;
+  margin-right: 12px;
+}
+
+.locBox {
+  margin-top: 6px;
+}
+
+.locItem {
+  width: 128px;
+  margin-right: 34px;
+}
+
+.genderItem {
+  width: 75px;
+}
+.sceneItem {
+  width: 75px;
+}
+
+.thirdItemContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 17px;
+  margin-bottom: 15px;
+}
+
+.itemStatus {
+  display: flex;
+  flex-direction: row;
+  width: 241px;
+  justify-content: end;
+  align-items: center;
+}
+
+.itemStatusTxt {
+  margin-left: 6px;
+}
+
+.addToChosenStr {
+  width: 241px;
+  height: 41px;
+  border: 1px solid rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #ffffff;
+  background: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), #00a3ff;
+  background-size: 20px 4px, 4px 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: 10px 18px, 18px 10px;
+}
+
+.addToChosenGrid {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #ffffff;
+  background: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), #00a3ff;
+  background-size: 50% 4px, 4px 50%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: 550px;
+}
+
+.charContainerGrid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.charItemGrid {
+  margin-top: 35px;
+  width: 570px;
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+  border: 1px dashed rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+  justify-content: flex-start;
+}
+
+.itemStatusGrid {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: end;
+  align-items: center;
+}
+
+.charItemHandlerOneGrid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 408px;
+}

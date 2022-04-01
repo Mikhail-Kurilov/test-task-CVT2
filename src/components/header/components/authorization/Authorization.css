@@ -1,8 +1,99 @@
 .authorizationWrapper {
-  height: 445px;
-  width: 370px;
-  left: 536px;
-  top: 231px;
-  border-radius: 5px;
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 1024px;
+  background: #00000066;
+}
+
+.authorizationForm {
+  position: absolute;
+  width: 370px;
+  height: 445px;
+  left: 536px;
+  top: 194px;
+  background: #ffffff;
+  border: 1px dashed rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 20px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.authWord {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 44px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.authInput {
+  width: 331px;
+  height: 36px;
+  background: rgba(162, 162, 162, 0.1);
+  border: 1px solid rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-top: 35px;
+  padding: 10px;
+}
+
+.authInput.pass {
+  background: url(../../../../assets/img/eye.png) no-repeat center right 9px;
+}
+
+.memWrapper {
+  width: 331px;
+  margin-top: 35px;
+}
+
+.memorizeBox {
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.remember {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin-left: 10px;
+}
+
+.buttonAuth {
+  width: 123.57px;
+  height: 49px;
+  background: #000000;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 53px;
+  color: #ffffff;
+}
+
+.upImg {
+  position: absolute;
+  left: 617px;
+  top: 34px;
+}
+
+.leftImg {
+  position: absolute;
+  left: 272px;
+  top: 241px;
+}
+
+.rightImg {
+  position: absolute;
+  left: 795px;
+  top: 160px;
 }

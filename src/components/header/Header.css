@@ -28,13 +28,17 @@
 .buttonContainer {
   display: flex;
   flex-direction: row;
+  margin-left: 90px;
+}
+
+.registrationContainer {
+  margin-left: 378px;
 }
 
 .relocationButton {
   border: none;
   cursor: pointer;
   font-weight: 500;
-
   background-color: unset;
   font-size: 18px;
   line-height: 21.94px;
@@ -93,4 +97,19 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
+}
+
+.userBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.exitButton {
+  width: 123.57px;
+  height: 49.28px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 23.43px;
 }

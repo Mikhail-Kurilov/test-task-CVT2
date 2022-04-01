@@ -28,9 +28,8 @@
   margin-right: 20px;
 }
 
-.h2 {
+h2 {
   font-size: 36px;
-  font-style: normal;
   font-weight: 500;
   line-height: 44px;
   letter-spacing: 0em;
@@ -40,7 +39,6 @@
 
 .innerCardText {
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
   line-height: 20px;
   letter-spacing: 0em;

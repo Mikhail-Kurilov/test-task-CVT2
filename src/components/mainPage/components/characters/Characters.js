@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import "./Characters.css";
 import backArrow from "../../../../assets/img/Vector.png";
+import greenDot from "../../../../assets/img/greenDot.png";
+import redDot from "../../../../assets/img/redDot.png";
+import yellowDot from "../../../../assets/img/yellowDot.png";
 
 function Characters() {
   const [cards, setCards] = useState([]);
@@ -10,7 +14,9 @@ function Characters() {
   const navigate = useNavigate();
 
   function handleClickView() {
-    setGrid(!stripe);
+    document.querySelector(".toggleView").classList.toggle("active");
+    document.querySelector(".toggleView2").classList.toggle("active2");
+    setGrid(stripe === "Stripes" ? "noStripes" : "Stripes");
   }
 
   useEffect(() => {
@@ -21,43 +27,92 @@ function Characters() {
     }
   });
 
+  function getEpisodeNumbers(episodes) {
+    return episodes
+      .map((str) => {
+        const arr = str.split("/");
+        return arr[arr.length - 1] - 0;
+      })
+      .sort((a, b) => a - b)
+      .reduce(
+        (result, value) => {
+          const lastElem = result[result.length - 1];
+          if (!lastElem.length) {
+            lastElem[0] = value;
+          } else if (lastElem.find((el) => el === value - 1)) {
+            lastElem[1] = value;
+          } else {
+            result.push([value]);
+          }
+          return result;
+        },
+        [[]]
+      )
+      .map((el) => el.join(" - "))
+      .join(", ");
+  }
+
   function handleClickViewStripes() {
-    console.log(cards);
     return (
-      <ul>
+      <ul className="charContainer">
         {cards.map((item, i) => {
-          console.log(item, i);
           return (
-            <li key={i}>
+            <li key={i} className="charItem">
               <img src={item.image} width="162px" height="162px"></img>
-              <span>
-                <p>{item.name}</p>
-                <p>{item.status}</p>
-              </span>
-              <span>
-                <p>Раса:</p>
-                <p>{item.species}</p>
-              </span>
-              <span>
-                <p>Место происхождения:</p>
-                <p>{item.origin.name}</p>
-              </span>
-              <span>
-                <p>Последняя локация:</p>
-                <p>{item.location.name}</p>
-              </span>
-              <span>
-                <p>Пол:</p>
-                <p>{item.gender}</p>
-              </span>
-              <span>
-                <p>Эпизоды:</p>
-                <p>
-                  {Object.keys(item.episode)[1] +
-                    "-" +
-                    Object.keys(item.episode)[item.episode.length - 1]}
-                </p>
-              </span>
+              <div className="charItemHandlerOne">
+                <span className="firstItemContainer">
+                  <span className="innerItem">
+                    <p className="charName">{item.name}</p>
+                  </span>
+                  <span className="innerItem raceBox">
+                    <p className="itemTxt raceItem">Раса:</p>
+                    <p className="itemValue">{item.species}</p>
+                  </span>
+                  <span className="innerItem placeBox">
+                    <p className="itemTxt placeItem">Место происхождения:</p>
+                    <p className="itemValue">{item.origin.name}</p>
+                  </span>
+                  <span className="innerItem locBox">
+                    <p className="itemTxt locItem">Последняя локация:</p>
+                    <p className="itemValue">{item.location.name}</p>
+                  </span>
+                </span>
+                <div className="charItemHandlerTwo">
+                  <span className="secondItemContainer">
+                    <span className="innerItem">
+                      <p className="itemTxt genderItem">Пол:</p>
+                      <p className="itemValue">{item.gender}</p>
+                    </span>
+                    <span className="innerItem">
+                      <p className="itemTxt sceneItem">Эпизоды:</p>
+                      <p className="itemValue">
+                        {getEpisodeNumbers(item.episode)}
+                      </p>
+                    </span>
+                  </span>
+                  <span className="thirdItemContainer">
+                    {item.status === "Alive" ? (
+                      <span className="itemStatus">
+                        <img src={greenDot}></img>
+                        <p className="itemStatusTxt">Живой</p>
+                      </span>
+                    ) : item.status === "Dead" ? (
+                      <span className="itemStatus">
+                        <img src={redDot}></img>
+                        <p className="itemStatusTxt">Мертв</p>
+                      </span>
+                    ) : (
+                      <span className="itemStatus">
+                        <img src={yellowDot}></img>
+                        <p className="itemStatusTxt">Неизвестно</p>
+                      </span>
+                    )}
+                    <button className="addToChosenStr">
+                      Добавить в избранное
+                    </button>
+                  </span>
+                </div>
+              </div>
             </li>
           );
         })}
@@ -67,14 +122,47 @@ function Characters() {
 
   function handleClickViewGrid() {
     return (
-      <ul>
+      <ul className="charContainerGrid">
         {cards.map((item, i) => (
-          <li>
-            <div key={i}>
-              <img src={item.image}></img>
-            </div>
-            <div key={i + 1}>
-              <img src={item.image}></img>
+          <li key={i} className="charItemGrid">
+            <button className="addToChosenGrid"></button>
+            <img src={item.image} width="162px" height="162px"></img>
+            <div className="charItemHandlerOneGrid">
+              <span className="firstItemContainer">
+                <span className="innerItem">
+                  <p className="charName">{item.name}</p>
+                  <span className="thirdItemContainer">
+                    {item.status === "Alive" ? (
+                      <span className="itemStatusGrid">
+                        <img src={greenDot}></img>
+                        <p className="itemStatusTxt">Живой</p>
+                      </span>
+                    ) : item.status === "Dead" ? (
+                      <span className="itemStatusGrid">
+                        <img src={redDot}></img>
+                        <p className="itemStatusTxt">Мертв</p>
+                      </span>
+                    ) : (
+                      <span className="itemStatusGrid">
+                        <img src={yellowDot}></img>
+                        <p className="itemStatusTxt">Неизвестно</p>
+                      </span>
+                    )}
+                  </span>
+                </span>
+                <span className="innerItem raceBox">
+                  <p className="itemTxt raceItem">Раса:</p>
+                  <p className="itemValue">{item.species}</p>
+                </span>
+                <span className="innerItem placeBox">
+                  <p className="itemTxt placeItem">Место происхождения:</p>
+                  <p className="itemValue">{item.origin.name}</p>
+                </span>
+                <span className="innerItem locBox">
+                  <p className="itemTxt locItem">Последняя локация:</p>
+                  <p className="itemValue">{item.location.name}</p>
+                </span>
+              </span>
             </div>
           </li>
         ))}
@@ -82,20 +170,15 @@ function Characters() {
     );
   }
 
-  function changeView() {
-    return stripe === "Stripes"
-      ? handleClickViewStripes()
-      : handleClickViewGrid();
-  }
-
   function handleClick() {
     navigate(-1);
   }
+
   return (
     <div className="charactersWrapper">
       <div className="headerCharactersContainer">
         <div className="backContainer">
-          <button onClick={handleClick}>
+          <button className="backArrow" onClick={handleClick}>
             <img
               src={backArrow}
               width="15px"
@@ -103,36 +186,71 @@ function Characters() {
               alt="backArrow"
             ></img>
           </button>
-          <p>Назад</p>
+          <p className="back">Назад</p>
         </div>
         <h3 className="pageTitle">Персонажи</h3>
       </div>
       <div className="navContainer">
         <div className="search name">
-          <p></p>
-          <input></input>
+          <label for="nameSearch" className="searchTitle">
+            Поиск по имени
+          </label>
+          <input
+            className="nameSearch"
+            id="nameSearch"
+            type="text"
+            placeholder="Введите имя персонажа"
+          ></input>
         </div>
         <div className="search race">
-          <p></p>
-          <input></input>
+          <label for="raceSearch" className="searchTitle">
+            Поиск по расе
+          </label>
+          <input
+            className="raceSearch"
+            id="raceSearch"
+            type="text"
+            placeholder="Введите расу персонажа"
+          ></input>
         </div>
         <div className="search status">
-          <p></p>
-          <input></input>
+          <label for="statusSearch" className="searchTitle">
+            Поиск по статусу
+          </label>
+          <select className="statusSearch" id="statusSearch">
+            <option className="statusSearchOption" value="">
+              Выберете статус персонажа
+            </option>
+            <option className="statusSearchOption" value="Живой">
+              Живой
+            </option>
+            <option className="statusSearchOption" value="Мертв">
+              Мертв
+            </option>
+            <option className="statusSearchOption" value="Неизвестно">
+              Неизвестно
+            </option>
+          </select>
         </div>
         <div className="formContainer">
-          <p></p>
-          <button className="toggleView active" onClick={handleClickView}>
-            123
-            <img></img>
-          </button>
-          <button className="toggleView" onClick={handleClickView}>
-            456
-            <img></img>
-          </button>
+          <p className="formTitle searchTitle">Вид:</p>
+          <div className="toggleButtonContainer">
+            <button
+              className="toggleView2 active2"
+              onClick={handleClickView}
+            ></button>
+            <button
+              className="toggleView active"
+              onClick={handleClickView}
+            ></button>
+          </div>
         </div>
       </div>
-      <div className="charactersContainer">{changeView()}</div>
+      <div className="charactersContainer">
+        {stripe === "Stripes"
+          ? handleClickViewStripes()
+          : handleClickViewGrid()}
+      </div>
     </div>
   );
 }
