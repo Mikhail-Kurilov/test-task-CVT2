@@ -1,0 +1,109 @@
+.backContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.backArrow {
+  border: none;
+  outline: none;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.charContainerLoc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.charItemLoc {
+  margin-top: 35px;
+  width: 570px;
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+  border: 1px dashed rgba(162, 162, 162, 0.6);
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.locContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.locNameContainer {
+  display: flex;
+  margin-top: 11px;
+}
+
+.locName {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+}
+
+.locContentContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 9px;
+  padding: 0 30px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.typeDimensionContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.typeCont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.typeContNum {
+  width: 283px;
+}
+
+.itemTxt {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #1f4766;
+  margin-bottom: 5px;
+}
+
+.itemType {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.dimensionType {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.typeContDimension {
+  margin-top: 5px;
+}
+
+.itemNumber {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+}

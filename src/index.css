@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: "Montserrat", "Roboto";
@@ -13,27 +14,21 @@ code {
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat Hairline"), local("Montserrat-Hairline"),
-    url("../public/fonts/montserrathairline.woff2") format("woff2"),
-    url("../public/fonts/montserrathairline.woff") format("woff"),
-    url("../public/fonts/montserrathairline.ttf") format("truetype");
+    url("./fonts/montserrathairline.woff") format("woff");
   font-weight: 100;
   font-style: normal;
 }
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat Light"), local("Montserrat-Light"),
-    url("../public/fonts/montserratlight.woff2") format("woff2"),
-    url("../public/fonts/montserratlight.woff") format("woff"),
-    url("../public/fonts/montserratlight.ttf") format("truetype");
+    url("./fonts/montserratlight.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat"), local("Montserrat-Regular"),
-    url("../public/fonts/montserrat.woff2") format("woff2"),
-    url("../public/fonts/montserrat.woff") format("woff"),
-    url("../public/fonts//montserrat.ttf") format("truetype");
+    url("./fonts/montserrat.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -41,7 +36,7 @@ code {
 @font-face {
   font-family: "Montserrat";
   src: local("montserrat-medium"),
-    url("../public/fonts/montserrat-medium.woff") format("woff");
+    url("./fonts/montserrat-medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
@@ -49,18 +44,14 @@ code {
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat Bold"), local("Montserrat-Bold"),
-    url("../public/fonts/montserratbold.woff2") format("woff2"),
-    url("../public/fonts/montserratbold.woff") format("woff"),
-    url("../public/fonts/montserratbold.ttf") format("truetype");
+    url("./fonts/montserratbold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat Black"), local("Montserrat-Black"),
-    url("../public/fonts/montserratblack.woff2") format("woff2"),
-    url("../public/fonts/montserratblack.woff") format("woff"),
-    url("../public/fonts/montserratblack.ttf") format("truetype");
+    url("./fonts/montserratblack.woff") format("woff");
   font-weight: 900;
   font-style: normal;
 }

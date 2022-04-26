@@ -16,7 +16,7 @@ function AboutPage() {
   return (
     <div className="aboutWrapper">
       <div className="headerAboutContainer">
-        <div className="backContainer">
+        <nav className="backContainer">
           <button className="backArrow" onClick={handleClick}>
             <img
               src={backArrow}
@@ -24,12 +24,12 @@ function AboutPage() {
               height="24px"
               alt="backArrow"
             ></img>
+            <span className="back">Назад</span>
           </button>
-          <p className="back">Назад</p>
-        </div>
-        <h3 className="pageTitle">О проекте</h3>
+        </nav>
+        <h2 className="pageTitle">О проекте</h2>
       </div>
-      <div className="aboutContainer">
+      <span className="aboutContainer">
         <p className="aboutText1">
           Данный проект создан по мотивам приключений Рика и Морти. Здесь вы
           можете поближе познакомиться со всеми персонажами, эпизодами и
@@ -40,7 +40,7 @@ function AboutPage() {
           Frontend. В зависимости от грейда кандидата необходимо выполнить
           соответствующий список заданий. Желаем удачи!
         </p>
-      </div>
+      </span>
     </div>
   );
 }

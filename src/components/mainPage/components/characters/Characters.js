@@ -11,7 +11,20 @@ import yellowDot from "../../../../assets/img/yellowDot.png";
 function Characters() {
   const [cards, setCards] = useState([]);
   const [stripe, setGrid] = useState("Stripes");
+  const [valueTxt, setValueTxt] = useState("");
   const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(valueTxt);
+  };
+  const handleValueChange = (e) => {
+    console.log(e.target.value);
+
+    //setValueTxt(e.target.valueTxt);
+  };
+
+  //const charRace = document.getElementById("raceSearch").value;
 
   function handleClickView() {
     document.querySelector(".toggleView").classList.toggle("active");
@@ -26,6 +39,16 @@ function Characters() {
       });
     }
   });
+
+  function query(elements) {
+    return elements.filter((elem) => {
+      const isValid = true;
+      for (let key in elements) {
+        isValid = isValid && elem[key] == elements[key];
+      }
+      return isValid;
+    });
+  }
 
   function getEpisodeNumbers(episodes) {
     return episodes
@@ -51,8 +74,11 @@ function Characters() {
       .map((el) => el.join(" - "))
       .join(", ");
   }
-
+  /*charName === cards.name ? (
+      <div>{query(cards)}</div>
+    ) : */
   function handleClickViewStripes() {
+    //const charName = document.getElementById("nameSearch").value;
     return (
       <ul className="charContainer">
         {cards.map((item, i) => {
@@ -60,57 +86,59 @@ function Characters() {
             <li key={i} className="charItem">
               <img src={item.image} width="162px" height="162px"></img>
               <div className="charItemHandlerOne">
-                <span className="firstItemContainer">
+                <section className="firstItemContainer">
                   <span className="innerItem">
-                    <p className="charName">{item.name}</p>
+                    <span className="charName">{item.name}</span>
                   </span>
                   <span className="innerItem raceBox">
-                    <p className="itemTxt raceItem">Раса:</p>
-                    <p className="itemValue">{item.species}</p>
+                    <span className="itemTxt raceItem">Раса:</span>
+                    <span className="itemValue">{item.species}</span>
                   </span>
                   <span className="innerItem placeBox">
-                    <p className="itemTxt placeItem">Место происхождения:</p>
-                    <p className="itemValue">{item.origin.name}</p>
+                    <span className="itemTxt placeItem">
+                      Место происхождения:
+                    </span>
+                    <span className="itemValue">{item.origin.name}</span>
                   </span>
                   <span className="innerItem locBox">
-                    <p className="itemTxt locItem">Последняя локация:</p>
-                    <p className="itemValue">{item.location.name}</p>
+                    <span className="itemTxt locItem">Последняя локация:</span>
+                    <span className="itemValue">{item.location.name}</span>
                   </span>
-                </span>
+                </section>
                 <div className="charItemHandlerTwo">
-                  <span className="secondItemContainer">
+                  <section className="secondItemContainer">
                     <span className="innerItem">
-                      <p className="itemTxt genderItem">Пол:</p>
-                      <p className="itemValue">{item.gender}</p>
+                      <span className="itemTxt genderItem">Пол:</span>
+                      <span className="itemValue">{item.gender}</span>
                     </span>
                     <span className="innerItem">
-                      <p className="itemTxt sceneItem">Эпизоды:</p>
-                      <p className="itemValue">
+                      <span className="itemTxt sceneItem">Эпизоды:</span>
+                      <span className="itemValue">
                         {getEpisodeNumbers(item.episode)}
-                      </p>
+                      </span>
                     </span>
-                  </span>
-                  <span className="thirdItemContainer">
+                  </section>
+                  <section className="thirdItemContainer">
                     {item.status === "Alive" ? (
                       <span className="itemStatus">
                         <img src={greenDot}></img>
-                        <p className="itemStatusTxt">Живой</p>
+                        <span className="itemStatusTxt">Живой</span>
                       </span>
                     ) : item.status === "Dead" ? (
                       <span className="itemStatus">
                         <img src={redDot}></img>
-                        <p className="itemStatusTxt">Мертв</p>
+                        <span className="itemStatusTxt">Мертв</span>
                       </span>
                     ) : (
                       <span className="itemStatus">
                         <img src={yellowDot}></img>
-                        <p className="itemStatusTxt">Неизвестно</p>
+                        <span className="itemStatusTxt">Неизвестно</span>
                       </span>
                     )}
                     <button className="addToChosenStr">
                       Добавить в избранное
                     </button>
-                  </span>
+                  </section>
                 </div>
               </div>
             </li>
@@ -128,41 +156,43 @@ function Characters() {
             <button className="addToChosenGrid"></button>
             <img src={item.image} width="162px" height="162px"></img>
             <div className="charItemHandlerOneGrid">
-              <span className="firstItemContainer">
-                <span className="innerItem">
-                  <p className="charName">{item.name}</p>
-                  <span className="thirdItemContainer">
+              <div className="firstItemContainerGrid">
+                <section className="innerItem nameStatus">
+                  <span className="charName">{item.name}</span>
+                  <span className="thirdItemContainerGrid">
                     {item.status === "Alive" ? (
                       <span className="itemStatusGrid">
                         <img src={greenDot}></img>
-                        <p className="itemStatusTxt">Живой</p>
+                        <span className="itemStatusTxt">Живой</span>
                       </span>
                     ) : item.status === "Dead" ? (
                       <span className="itemStatusGrid">
                         <img src={redDot}></img>
-                        <p className="itemStatusTxt">Мертв</p>
+                        <span className="itemStatusTxt">Мертв</span>
                       </span>
                     ) : (
                       <span className="itemStatusGrid">
                         <img src={yellowDot}></img>
-                        <p className="itemStatusTxt">Неизвестно</p>
+                        <span className="itemStatusTxt">Неизвестно</span>
                       </span>
                     )}
                   </span>
-                </span>
-                <span className="innerItem raceBox">
-                  <p className="itemTxt raceItem">Раса:</p>
-                  <p className="itemValue">{item.species}</p>
-                </span>
-                <span className="innerItem placeBox">
-                  <p className="itemTxt placeItem">Место происхождения:</p>
-                  <p className="itemValue">{item.origin.name}</p>
-                </span>
-                <span className="innerItem locBox">
-                  <p className="itemTxt locItem">Последняя локация:</p>
-                  <p className="itemValue">{item.location.name}</p>
-                </span>
-              </span>
+                </section>
+                <section className="innerItem raceBox">
+                  <span className="itemTxt raceItem">Раса:</span>
+                  <span className="itemValue">{item.species}</span>
+                </section>
+                <section className="innerItem placeBox">
+                  <span className="itemTxt placeItem">
+                    Место происхождения:
+                  </span>
+                  <span className="itemValue">{item.origin.name}</span>
+                </section>
+                <section className="innerItem locBox">
+                  <span className="itemTxt locItem">Последняя локация:</span>
+                  <span className="itemValue">{item.location.name}</span>
+                </section>
+              </div>
             </div>
           </li>
         ))}
@@ -177,7 +207,7 @@ function Characters() {
   return (
     <div className="charactersWrapper">
       <div className="headerCharactersContainer">
-        <div className="backContainer">
+        <nav className="backContainer">
           <button className="backArrow" onClick={handleClick}>
             <img
               src={backArrow}
@@ -185,55 +215,63 @@ function Characters() {
               height="24px"
               alt="backArrow"
             ></img>
+            <span className="back">Назад</span>
           </button>
-          <p className="back">Назад</p>
-        </div>
-        <h3 className="pageTitle">Персонажи</h3>
+        </nav>
+        <h2 className="pageTitle">
+          <span className="charTitle">Персонажи</span>
+        </h2>
       </div>
-      <div className="navContainer">
-        <div className="search name">
-          <label for="nameSearch" className="searchTitle">
-            Поиск по имени
-          </label>
-          <input
-            className="nameSearch"
-            id="nameSearch"
-            type="text"
-            placeholder="Введите имя персонажа"
-          ></input>
-        </div>
-        <div className="search race">
-          <label for="raceSearch" className="searchTitle">
-            Поиск по расе
-          </label>
-          <input
-            className="raceSearch"
-            id="raceSearch"
-            type="text"
-            placeholder="Введите расу персонажа"
-          ></input>
-        </div>
-        <div className="search status">
-          <label for="statusSearch" className="searchTitle">
-            Поиск по статусу
-          </label>
-          <select className="statusSearch" id="statusSearch">
-            <option className="statusSearchOption" value="">
-              Выберете статус персонажа
-            </option>
-            <option className="statusSearchOption" value="Живой">
-              Живой
-            </option>
-            <option className="statusSearchOption" value="Мертв">
-              Мертв
-            </option>
-            <option className="statusSearchOption" value="Неизвестно">
-              Неизвестно
-            </option>
-          </select>
+      <nav className="navContainer">
+        <div className="searchSectionWrapper">
+          <section className="search name">
+            <label htmlFor="nameSearch" className="searchTitle">
+              Поиск по имени
+            </label>
+            <form onSubmit={handleSubmit}>
+              <input
+                className="nameSearch"
+                id="nameSearch"
+                type="text"
+                placeholder="Введите имя персонажа"
+                value={valueTxt}
+                onChange={handleValueChange}
+              ></input>
+            </form>
+          </section>
+          <section className="search race">
+            <label htmlFor="raceSearch" className="searchTitle">
+              Поиск по расе
+            </label>
+            <input
+              className="raceSearch"
+              id="raceSearch"
+              type="text"
+              placeholder="Введите расу персонажа"
+            ></input>
+          </section>
+          <section className="search status">
+            <label htmlFor="statusSearch" className="searchTitle">
+              Поиск по статусу
+            </label>
+            <select className="statusSearch" id="statusSearch">
+              <option className="statusSearchOption" value="">
+                Выберете статус персонажа
+              </option>
+              <option className="statusSearchOption" value="Живой">
+                Живой
+              </option>
+              <option className="statusSearchOption" value="Мертв">
+                Мертв
+              </option>
+              <option className="statusSearchOption" value="Неизвестно">
+                Неизвестно
+              </option>
+            </select>
+          </section>
         </div>
         <div className="formContainer">
-          <p className="formTitle searchTitle">Вид:</p>
+          <span className="formTitle searchTitle">Вид:</span>
           <div className="toggleButtonContainer">
             <button
               className="toggleView2 active2"
@@ -245,7 +283,7 @@ function Characters() {
             ></button>
           </div>
         </div>
-      </div>
+      </nav>
       <div className="charactersContainer">
         {stripe === "Stripes"
           ? handleClickViewStripes()

@@ -5,7 +5,7 @@ import UpImg from "../../../../assets/img/up.png";
 import leftImg from "../../../../assets/img/left.png";
 import rightImg from "../../../../assets/img/right.png";
 
-function Registration({ authorizationOn }) {
+function Registration({ authorizationOn, closePopup }) {
   function checkLength(str, min, max) {
     return str.length >= min && str.length <= max;
   }
@@ -28,7 +28,7 @@ function Registration({ authorizationOn }) {
       /^[0-9A-Za-z]+$/i.test(password) &&
       password === password2
     ) {
-      authorizationOn(true, name, surname);
+      authorizationOn(true, name, surname, password2, login, mail);
     } else {
       authorizationOn(false);
     }
@@ -36,12 +36,13 @@ function Registration({ authorizationOn }) {
 
   return (
     <div className="registrationWrapper">
+      <div className="registrationClose" onClick={() => closePopup()}></div>
       <img className="upImg" src={UpImg}></img>
       <img className="leftImg" src={leftImg}></img>
       <img className="rightImg" src={rightImg}></img>
       <div className="registrationForm">
         <div>
-          <p className="regWord">Регистрация</p>
+          <h3 className="regWord">Регистрация</h3>
           <span className="regContainer">
             <input
               id="mail"

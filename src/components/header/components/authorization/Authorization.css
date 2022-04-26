@@ -2,7 +2,15 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 1440px;
+  width: 100%;
+  height: 1024px;
+}
+
+.authClose {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 1024px;
   background: #00000066;
 }

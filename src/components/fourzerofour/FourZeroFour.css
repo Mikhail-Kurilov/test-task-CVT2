@@ -2,6 +2,10 @@
   position: absolute;
   margin-top: -147px;
   background: #ffffff;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 1024px;
 }
 
 .imageWrapper {
@@ -9,7 +13,7 @@
 }
 
 .imageWrapperDown {
-  margin-top: 78px;
+  margin-top: 225px;
 }
 .upperText404 {
   font-size: 24px;

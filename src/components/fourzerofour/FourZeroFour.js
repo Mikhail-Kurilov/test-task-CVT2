@@ -20,12 +20,12 @@ function FourZeroFour() {
       <div className="imageWrapperDown">
         <img src={img404} alt="404"></img>
       </div>
-      <p className="upperText404">
+      <span className="upperText404">
         Упс. Кажется вы заблудились. Только без паники!
-      </p>
-      <p className="downText404">
+      </span>
+      <span className="downText404">
         Страница, которую вы ищите не существует, либо была удалена
-      </p>
+      </span>
       <button className="homeButton" onClick={handleClick}>
         <img className="homeImg" alt="" src={home}></img>
         Домой

@@ -21,37 +21,40 @@ function MainPage() {
     navigate("/locations");
   }
   return (
-    <div className="mainWrapper">
+    <main className="mainWrapper">
       <div className="cardCOntainer">
-        <div className="characters mainCards" onClick={handleClickCharacters}>
+        <section
+          className="characters mainCards"
+          onClick={handleClickCharacters}
+        >
           <div className="innerContainer">
             <img className="cardImg" src={characters}></img>
             <h2>Персонажи</h2>
-            <p className="innerCardText">
+            <h3 className="innerCardText">
               Зайди и познакомься со всеми персонажами вселенной
-            </p>
+            </h3>
           </div>
-        </div>
-        <div className="locations mainCards" onClick={handleClickLocations}>
+        </section>
+        <section className="locations mainCards" onClick={handleClickLocations}>
           <div className="innerContainer">
             <img className="cardImg" src={locations}></img>
             <h2>Локации</h2>
-            <p className="innerCardText">
+            <h3 className="innerCardText">
               Исследуй все локации. Давай же, не будь занудой!
-            </p>
+            </h3>
           </div>
-        </div>
-        <div className="episodes mainCards" onClick={handleClickEpisodes}>
+        </section>
+        <section className="episodes mainCards" onClick={handleClickEpisodes}>
           <div className="innerContainer">
             <img className="cardImg" src={episodes}></img>
             <h2>Эпизоды</h2>
-            <p className="innerCardText">
+            <h3 className="innerCardText">
               Узнай чуть больше о карте приключений Рика и Морти
-            </p>
+            </h3>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
 

@@ -37,6 +37,15 @@ function Header() {
     }
   }
 
+  function closePopup() {
+    setPageStatus(PAGE_STATUS.NO_POPUPS);
+  }
+
+  function getOut() {
+    localStorage.clear();
+    setAuthStatus(false);
+  }
+
   function userNameAdd() {
     const name = localStorage.getItem("name");
     const surname = localStorage.getItem("surname");
@@ -71,7 +80,7 @@ function Header() {
           <p className="userName" contentEditable="true">
             {userNameAdd()}
           </p>
-          <button className="exitButton" onClick={() => setAuthStatus(false)}>
+          <button className="exitButton" onClick={getOut}>
             Выйти
           </button>
         </div>
@@ -85,7 +94,10 @@ function Header() {
         >
           Регистрация
         </button>
-        <button className="enterButton" onClick={authorizationToggle}>
+        <button
+          className="enterButton"
+          onClick={() => setPageStatus(PAGE_STATUS.AUTH_POPUP)}
+        >
           Войти
         </button>
       </div>
@@ -93,7 +105,7 @@ function Header() {
   }
 
   return (
-    <div className="header">
+    <header className="header">
       <div className="headerWrapper">
         <div className="imageWrapper">
           <img src={img} width="112px" height="112px" alt="RickAndMorty"></img>
@@ -115,14 +127,20 @@ function Header() {
         </div>
         <div className="registrationContainer">{authorization()}</div>
         {pageStatus === PAGE_STATUS.AUTH_POPUP ? (
-          <Authorization authorizationOn={authorizationToggle} />
+          <Authorization
+            authorizationOn={authorizationToggle}
+            closePopup={closePopup}
+          />
         ) : pageStatus === PAGE_STATUS.REG_POPUP ? (
-          <Registration authorizationOn={registrationToggle} />
+          <Registration
+            authorizationOn={registrationToggle}
+            closePopup={closePopup}
+          />
         ) : (
           <div></div>
         )}
       </div>
-    </div>
+    </header>
   );
 }
 

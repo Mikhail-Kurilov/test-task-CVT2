@@ -1,7 +1,9 @@
 .app {
   text-align: center;
-  width: 1470px;
+  width: 1440px;
   height: 1024px;
+  margin: 0 auto;
+  overflow-y: hidden;
 }
 
 .appWrapper {
