@@ -111,34 +111,41 @@ function Header() {
           <img src={img} width="112px" height="112px" alt="RickAndMorty"></img>
         </div>
         <div className="buttonContainer">
-          <button className="relocationButton active" onClick={handleClickMain}>
-            Главная
-          </button>
-          {authStatus ? (
-            <button className="relocationButton" onClick={handleClickSelect}>
-              Избранное
+          <div className="navButtons">
+            <button
+              className="relocationButton active"
+              onClick={handleClickMain}
+            >
+              Главная
             </button>
-          ) : (
-            <div />
-          )}
-          <button className="relocationButton" onClick={handleClickAbout}>
-            О проекте
-          </button>
+            {authStatus ? (
+              <button className="relocationButton" onClick={handleClickSelect}>
+                Избранное
+              </button>
+            ) : (
+              <div />
+            )}
+            <button className="relocationButton" onClick={handleClickAbout}>
+              О проекте
+            </button>
+          </div>
+          <div className="registrationContainerWrapper">
+            <div className="registrationContainer">{authorization()}</div>
+            {pageStatus === PAGE_STATUS.AUTH_POPUP ? (
+              <Authorization
+                authorizationOn={authorizationToggle}
+                closePopup={closePopup}
+              />
+            ) : pageStatus === PAGE_STATUS.REG_POPUP ? (
+              <Registration
+                authorizationOn={registrationToggle}
+                closePopup={closePopup}
+              />
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
-        <div className="registrationContainer">{authorization()}</div>
-        {pageStatus === PAGE_STATUS.AUTH_POPUP ? (
-          <Authorization
-            authorizationOn={authorizationToggle}
-            closePopup={closePopup}
-          />
-        ) : pageStatus === PAGE_STATUS.REG_POPUP ? (
-          <Registration
-            authorizationOn={registrationToggle}
-            closePopup={closePopup}
-          />
-        ) : (
-          <div></div>
-        )}
       </div>
     </header>
   );

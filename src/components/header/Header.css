@@ -28,11 +28,13 @@
 .buttonContainer {
   display: flex;
   flex-direction: row;
-  margin-left: 90px;
+  width: 968px;
+  justify-content: space-between;
 }
 
-.registrationContainer {
-  margin-left: 378px;
+.navButtons {
+  display: flex;
+  flex-direction: row;
 }
 
 .relocationButton {
