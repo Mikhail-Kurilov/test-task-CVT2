@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
@@ -12,10 +12,35 @@ const PAGE_STATUS = {
   AUTH_POPUP: "authPopup",
 };
 
+const PAGE_ACTIVE = {
+  INACTIVE_PAGE: "inactivePage",
+  MAIN_PAGE: "mainPage",
+  ABOUT_PAGE: "aboutPage",
+  SELECT_PAGE: "selectPage",
+};
+
 function Header() {
   const [authStatus, setAuthStatus] = useState(false);
   const [pageStatus, setPageStatus] = useState(PAGE_STATUS.NO_POPUPS);
+  const [pageActive, setPageActive] = useState(PAGE_ACTIVE.INACTIVE_PAGE);
+  const [login, setLogin] = useState("");
+  const [mail, setMail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const mainPage = useRef(null);
+  const aboutPage = useRef(null);
+  const selectPage = useRef(null);
+
+  useEffect(() => {
+    if (window.location.pathname === "/") {
+      mainPage.current.className = "active";
+    } else if (window.location.pathname === "/about") {
+      aboutPage.current.className = "active";
+    } else if (window.location.pathname === "/select") {
+      selectPage.current.className = "active";
+    }
+  });
 
   function registrationToggle(value, name, surname) {
     if (value) {
@@ -42,34 +67,30 @@ function Header() {
   }
 
   function getOut() {
-    localStorage.clear();
+    //localStorage.clear();
     setAuthStatus(false);
   }
 
   function userNameAdd() {
     const name = localStorage.getItem("name");
     const surname = localStorage.getItem("surname");
-    return name && surname ? name && surname : "Иванов И.";
+    return name && surname
+      ? surname + " " + name.slice(0, 1) + "."
+      : "Иванов И.";
   }
 
   function handleClickAbout() {
-    document
-      .querySelectorAll(".relocationButton")
-      .forEach((elem) => elem.classList.toggle("active"));
+    setPageActive(PAGE_ACTIVE.ABOUT_PAGE);
     navigate("/about");
   }
 
   function handleClickMain() {
-    document
-      .querySelectorAll(".relocationButton")
-      .forEach((elem) => elem.classList.toggle("active"));
+    setPageActive(PAGE_ACTIVE.MAIN_PAGE);
     navigate("/");
   }
 
   function handleClickSelect() {
-    document
-      .querySelectorAll(".relocationButton")
-      .forEach((elem) => elem.classList.toggle("active"));
+    setPageActive(PAGE_ACTIVE.SELECT_PAGE);
     navigate("/select");
   }
 
@@ -104,6 +125,13 @@ function Header() {
     );
   }
 
+  const onSuccessRegistration = (login, mail, password) => {
+    setLogin(login);
+    setMail(mail);
+    setPassword(password);
+    //closePopup();
+  };
+
   return (
     <header className="header">
       <div className="headerWrapper">
@@ -113,19 +141,34 @@ function Header() {
         <div className="buttonContainer">
           <div className="navButtons">
             <button
-              className="relocationButton active"
+              className={
+                pageActive === "mainPage" ? "active" : "relocationButton"
+              }
               onClick={handleClickMain}
+              ref={mainPage}
             >
               Главная
             </button>
             {authStatus ? (
-              <button className="relocationButton" onClick={handleClickSelect}>
+              <button
+                className={
+                  pageActive === "selectPage" ? "active" : "relocationButton"
+                }
+                onClick={handleClickSelect}
+                ref={selectPage}
+              >
                 Избранное
               </button>
             ) : (
               <div />
             )}
-            <button className="relocationButton" onClick={handleClickAbout}>
+            <button
+              className={
+                pageActive === "aboutPage" ? "active" : "relocationButton"
+              }
+              onClick={handleClickAbout}
+              ref={aboutPage}
+            >
               О проекте
             </button>
           </div>
@@ -133,6 +176,9 @@ function Header() {
             <div className="registrationContainer">{authorization()}</div>
             {pageStatus === PAGE_STATUS.AUTH_POPUP ? (
               <Authorization
+                login={login}
+                mail={mail}
+                password={password}
                 authorizationOn={authorizationToggle}
                 closePopup={closePopup}
               />
@@ -140,6 +186,7 @@ function Header() {
               <Registration
                 authorizationOn={registrationToggle}
                 closePopup={closePopup}
+                onSuccessRegistration={onSuccessRegistration}
               />
             ) : (
               <div></div>

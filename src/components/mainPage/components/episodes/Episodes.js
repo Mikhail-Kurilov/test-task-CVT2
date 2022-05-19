@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -43,8 +43,19 @@ function Episodes() {
     navigate(-1);
   }
 
+  const inputEl1 = useRef(null);
+  const inputEl2 = useRef(null);
+  const inputEl3 = useRef(null);
+  const onButtonClick = () => {
+    inputEl3.current.value = inputEl1.current.value + inputEl2.current.value;
+  };
+
   return (
     <div className="charactersWrapper">
+      <input ref={inputEl1} type="text" />
+      <input ref={inputEl2} type="text" />
+      <input ref={inputEl3}></input>
+      <button onClick={onButtonClick}>Установить поле ввода</button>
       <div className="headerCharactersContainer">
         <nav className="backContainer">
           <button className="backArrow" onClick={handleClick}>

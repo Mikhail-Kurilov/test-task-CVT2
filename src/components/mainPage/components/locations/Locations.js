@@ -32,7 +32,7 @@ function Locations() {
               height="24px"
               alt="backArrow"
             ></img>
-            <span>Назад</span>
+            <span className="back">Назад</span>
           </button>
         </nav>
         <h2 className="pageTitle">Локации</h2>

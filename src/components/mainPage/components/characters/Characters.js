@@ -10,19 +10,30 @@ import yellowDot from "../../../../assets/img/yellowDot.png";
 
 function Characters() {
   const [cards, setCards] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
   const [stripe, setGrid] = useState("Stripes");
   const [valueTxt, setValueTxt] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(valueTxt);
-  };
-  const handleValueChange = (e) => {
-    console.log(e.target.value);
+  function handleValueChange(e) {
+    searchItems(e.target.value);
+  }
 
-    //setValueTxt(e.target.valueTxt);
-  };
+  function searchItems(searchValue) {
+    setValueTxt(searchValue);
+    console.log(searchValue);
+    if (valueTxt !== "") {
+      const filteredData = cards.filter((item) => {
+        return Object.values(item)
+          .join("")
+          .toLowerCase()
+          .includes(valueTxt.toLowerCase());
+      });
+      setFilteredResults(filteredData);
+    } else {
+      setFilteredResults(cards);
+    }
+  }
 
   //const charRace = document.getElementById("raceSearch").value;
 
@@ -39,16 +50,6 @@ function Characters() {
       });
     }
   });
-
-  function query(elements) {
-    return elements.filter((elem) => {
-      const isValid = true;
-      for (let key in elements) {
-        isValid = isValid && elem[key] == elements[key];
-      }
-      return isValid;
-    });
-  }
 
   function getEpisodeNumbers(episodes) {
     return episodes
@@ -74,76 +75,141 @@ function Characters() {
       .map((el) => el.join(" - "))
       .join(", ");
   }
-  /*charName === cards.name ? (
-      <div>{query(cards)}</div>
-    ) : */
+
   function handleClickViewStripes() {
-    //const charName = document.getElementById("nameSearch").value;
     return (
       <ul className="charContainer">
-        {cards.map((item, i) => {
-          return (
-            <li key={i} className="charItem">
-              <img src={item.image} width="162px" height="162px"></img>
-              <div className="charItemHandlerOne">
-                <section className="firstItemContainer">
-                  <span className="innerItem">
-                    <span className="charName">{item.name}</span>
-                  </span>
-                  <span className="innerItem raceBox">
-                    <span className="itemTxt raceItem">Раса:</span>
-                    <span className="itemValue">{item.species}</span>
-                  </span>
-                  <span className="innerItem placeBox">
-                    <span className="itemTxt placeItem">
-                      Место происхождения:
-                    </span>
-                    <span className="itemValue">{item.origin.name}</span>
-                  </span>
-                  <span className="innerItem locBox">
-                    <span className="itemTxt locItem">Последняя локация:</span>
-                    <span className="itemValue">{item.location.name}</span>
-                  </span>
-                </section>
-                <div className="charItemHandlerTwo">
-                  <section className="secondItemContainer">
-                    <span className="innerItem">
-                      <span className="itemTxt genderItem">Пол:</span>
-                      <span className="itemValue">{item.gender}</span>
-                    </span>
-                    <span className="innerItem">
-                      <span className="itemTxt sceneItem">Эпизоды:</span>
-                      <span className="itemValue">
-                        {getEpisodeNumbers(item.episode)}
+        {valueTxt.length > 1
+          ? filteredResults.map((item, i) => {
+              return (
+                <li key={i} className="charItem">
+                  <img src={item.image} width="162px" height="162px"></img>
+                  <div className="charItemHandlerOne">
+                    <section className="firstItemContainer">
+                      <span className="innerItem">
+                        <span className="charName">{item.name}</span>
                       </span>
-                    </span>
-                  </section>
-                  <section className="thirdItemContainer">
-                    {item.status === "Alive" ? (
-                      <span className="itemStatus">
-                        <img src={greenDot}></img>
-                        <span className="itemStatusTxt">Живой</span>
+                      <span className="innerItem raceBox">
+                        <span className="itemTxt raceItem">Раса:</span>
+                        <span className="itemValue">{item.species}</span>
                       </span>
-                    ) : item.status === "Dead" ? (
-                      <span className="itemStatus">
-                        <img src={redDot}></img>
-                        <span className="itemStatusTxt">Мертв</span>
+                      <span className="innerItem placeBox">
+                        <span className="itemTxt placeItem">
+                          Место происхождения:
+                        </span>
+                        <span className="itemValue">{item.origin.name}</span>
                       </span>
-                    ) : (
-                      <span className="itemStatus">
-                        <img src={yellowDot}></img>
-                        <span className="itemStatusTxt">Неизвестно</span>
+                      <span className="innerItem locBox">
+                        <span className="itemTxt locItem">
+                          Последняя локация:
+                        </span>
+                        <span className="itemValue">{item.location.name}</span>
                       </span>
-                    )}
-                    <button className="addToChosenStr">
-                      Добавить в избранное
-                    </button>
-                  </section>
-                </div>
-              </div>
-            </li>
-          );
-        })}
+                    </section>
+                    <div className="charItemHandlerTwo">
+                      <section className="secondItemContainer">
+                        <span className="innerItem">
+                          <span className="itemTxt genderItem">Пол:</span>
+                          <span className="itemValue">{item.gender}</span>
+                        </span>
+                        <span className="innerItem">
+                          <span className="itemTxt sceneItem">Эпизоды:</span>
+                          <span className="itemValue">
+                            {getEpisodeNumbers(item.episode)}
+                          </span>
+                        </span>
+                      </section>
+                      <section className="thirdItemContainer">
+                        {item.status === "Alive" ? (
+                          <span className="itemStatus">
+                            <img src={greenDot}></img>
+                            <span className="itemStatusTxt">Живой</span>
+                          </span>
+                        ) : item.status === "Dead" ? (
+                          <span className="itemStatus">
+                            <img src={redDot}></img>
+                            <span className="itemStatusTxt">Мертв</span>
+                          </span>
+                        ) : (
+                          <span className="itemStatus">
+                            <img src={yellowDot}></img>
+                            <span className="itemStatusTxt">Неизвестно</span>
+                          </span>
+                        )}
+                        <button className="addToChosenStr">
+                          Добавить в избранное
+                        </button>
+                      </section>
+                    </div>
+                  </div>
+                </li>
+              );
+            })
+          : cards.map((item, i) => {
+              return (
+                <li key={i} className="charItem">
+                  <img src={item.image} width="162px" height="162px"></img>
+                  <div className="charItemHandlerOne">
+                    <section className="firstItemContainer">
+                      <span className="innerItem">
+                        <span className="charName">{item.name}</span>
+                      </span>
+                      <span className="innerItem raceBox">
+                        <span className="itemTxt raceItem">Раса:</span>
+                        <span className="itemValue">{item.species}</span>
+                      </span>
+                      <span className="innerItem placeBox">
+                        <span className="itemTxt placeItem">
+                          Место происхождения:
+                        </span>
+                        <span className="itemValue">{item.origin.name}</span>
+                      </span>
+                      <span className="innerItem locBox">
+                        <span className="itemTxt locItem">
+                          Последняя локация:
+                        </span>
+                        <span className="itemValue">{item.location.name}</span>
+                      </span>
+                    </section>
+                    <div className="charItemHandlerTwo">
+                      <section className="secondItemContainer">
+                        <span className="innerItem">
+                          <span className="itemTxt genderItem">Пол:</span>
+                          <span className="itemValue">{item.gender}</span>
+                        </span>
+                        <span className="innerItem">
+                          <span className="itemTxt sceneItem">Эпизоды:</span>
+                          <span className="itemValue">
+                            {getEpisodeNumbers(item.episode)}
+                          </span>
+                        </span>
+                      </section>
+                      <section className="thirdItemContainer">
+                        {item.status === "Alive" ? (
+                          <span className="itemStatus">
+                            <img src={greenDot}></img>
+                            <span className="itemStatusTxt">Живой</span>
+                          </span>
+                        ) : item.status === "Dead" ? (
+                          <span className="itemStatus">
+                            <img src={redDot}></img>
+                            <span className="itemStatusTxt">Мертв</span>
+                          </span>
+                        ) : (
+                          <span className="itemStatus">
+                            <img src={yellowDot}></img>
+                            <span className="itemStatusTxt">Неизвестно</span>
+                          </span>
+                        )}
+                        <button className="addToChosenStr">
+                          Добавить в избранное
+                        </button>
+                      </section>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
       </ul>
     );
   }
@@ -228,16 +294,15 @@ function Characters() {
             <label htmlFor="nameSearch" className="searchTitle">
               Поиск по имени
             </label>
-            <form onSubmit={handleSubmit}>
+            <div>
               <input
                 className="nameSearch"
                 id="nameSearch"
                 type="text"
                 placeholder="Введите имя персонажа"
-                value={valueTxt}
                 onChange={handleValueChange}
               ></input>
-            </form>
+            </div>
           </section>
           <section className="search race">
             <label htmlFor="raceSearch" className="searchTitle">
